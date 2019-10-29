@@ -1,0 +1,25 @@
+<!doctype html>
+<title>Web File Proxy</title>
+
+<link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+      integrity="sha256-vK3UTo/8wHbaUn+dTQD0X6dzidqc5l7gczvH+Bnowwk=" />
+
+<section class="hero is-info is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <div class="box">
+                    <form method="post" action="/actions-auth">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" name="password" type="password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <button class="button is-block is-info is-large is-fullwidth">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

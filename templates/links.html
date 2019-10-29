@@ -1,0 +1,66 @@
+<!doctype html>
+<title>Links | Web File Proxy</title>
+
+<link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+      integrity="sha256-vK3UTo/8wHbaUn+dTQD0X6dzidqc5l7gczvH+Bnowwk=" />
+
+<style>
+    .link-field {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-bottom: 5px;
+        border-bottom: 1px solid #CCC;
+    }
+
+    .link-field:last-of-type {
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .link-field .link {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .link-field .link .url {
+        font-size: 12px;
+    }
+
+    .new-button {
+        margin-bottom: 10px;
+    }
+</style>
+
+<section class="hero is-info is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <div class="new-button has-text-right">
+                    <a href="/new" class="button is-success">New</a>
+                </div>
+                <div class="box has-text-left">
+                    {{range .}}
+                        <div class="link-field">
+                            <div class="link">
+                                <div class="ident">
+                                    <a href="/p/{{.Identifier}}" target="_blank">/p/{{.Identifier}}</a>
+                                </div>
+                                <div class="url">{{.Url}}</div>
+                            </div>
+                            <form action="/actions-delete" method="post">
+                                <input type="hidden" name="uid" value="{{.Uid}}" />
+                                <input type="submit" class="button is-danger" value="Delete" />
+                            </form>
+                        </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+<!doctype html>
+<title>Add a new link | Web File Proxy</title>
+
+<link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+      integrity="sha256-vK3UTo/8wHbaUn+dTQD0X6dzidqc5l7gczvH+Bnowwk=" />
+
+<section class="hero is-info is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <div class="box has-text-left">
+                    <form action="/actions-add" method="post">
+                        <div class="field">
+                            <label class="label">Identifier</label>
+                            <div class="control">
+                                <input name="identifier" class="input" type="text" placeholder="my-resource" required />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">URL</label>
+                            <div class="control">
+                                <input name="url" class="input" type="text" placeholder="https://your-domain.com/resource.xml" required />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Content Type</label>
+                            <div class="control">
+                                <input name="content-type" class="input" type="text" placeholder="application/xml" />
+                            </div>
+                        </div>
+                        <div class="has-text-right">
+                            <input class="button is-info" type="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
