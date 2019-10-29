@@ -19,7 +19,10 @@ func hash(data []byte) string {
 	data = append([]byte(hashSalt), data...)
 
 	hasher := sha3.New256()
-	hasher.Write(data)
+	_, err := hasher.Write(data)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return hex.EncodeToString(hasher.Sum(nil))
 }
 

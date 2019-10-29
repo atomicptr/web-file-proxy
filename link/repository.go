@@ -19,6 +19,9 @@ func (r *Repository) InitSchema() error {
 		return err
 	}
 	_, err = stmt.Exec()
+	if err != nil {
+		return err
+	}
 
 	// create index
 	stmt, err = r.Db.Prepare("create unique index if not exists ident_index on links (identifier)")
