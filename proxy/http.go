@@ -1,7 +1,7 @@
 package proxy
 
 import (
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"strconv"
@@ -148,13 +148,6 @@ func (p *Proxy) handleProxy(w http.ResponseWriter, r *http.Request) {
 	}
 	defer res.Body.Close()
 
-	data, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		log.Println(err)
-		p.handleError(500, "Could not read resource", w)
-		return
-	}
-
 	// status OK
 	w.WriteHeader(200)
 
@@ -168,7 +161,7 @@ func (p *Proxy) handleProxy(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", link.ContentType)
 	}
 
-	_, err = w.Write(data)
+	_, err = io.Copy(w, res.Body)
 	if err != nil {
 		log.Println(err)
 		p.handleError(500, "Could not write resource", w)
