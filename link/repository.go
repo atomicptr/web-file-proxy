@@ -30,6 +30,11 @@ func (r *Repository) InitSchema() error {
 	}
 	_, err = stmt.Exec()
 
+	err = stmt.Close()
+	if err != nil {
+		return err
+	}
+
 	return err
 }
 
@@ -52,6 +57,11 @@ func (r *Repository) FindAll() ([]*Link, error) {
 		links = append(links, &link)
 	}
 
+	err = rows.Close()
+	if err != nil {
+		return nil, err
+	}
+
 	return links, nil
 }
 
@@ -65,6 +75,11 @@ func (r *Repository) FindByIdentifier(ident string) (*Link, error) {
 
 	rows.Next()
 	err = rows.Scan(&link.Uid, &link.Identifier, &link.Url, &link.ContentType)
+	if err != nil {
+		return nil, err
+	}
+
+	err = rows.Close()
 	if err != nil {
 		return nil, err
 	}
@@ -83,6 +98,11 @@ func (r *Repository) InsertNew(identifier, url, contentType string) error {
 		return err
 	}
 
+	err = stmt.Close()
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -93,6 +113,11 @@ func (r *Repository) DeleteByUid(uid int) error {
 	}
 
 	_, err = stmt.Exec(uid)
+	if err != nil {
+		return err
+	}
+
+	err = stmt.Close()
 	if err != nil {
 		return err
 	}
