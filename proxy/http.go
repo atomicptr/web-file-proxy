@@ -148,9 +148,6 @@ func (p *Proxy) handleProxy(w http.ResponseWriter, r *http.Request) {
 	}
 	defer res.Body.Close()
 
-	// status OK
-	w.WriteHeader(200)
-
 	// if resource had a "Content-Type" set, use that
 	if contentType := r.Header.Get("Content-Type"); contentType != "" {
 		w.Header().Set("Content-Type", contentType)
@@ -160,6 +157,8 @@ func (p *Proxy) handleProxy(w http.ResponseWriter, r *http.Request) {
 	if link.ContentType != "" {
 		w.Header().Set("Content-Type", link.ContentType)
 	}
+
+	w.WriteHeader(200)
 
 	_, err = io.Copy(w, res.Body)
 	if err != nil {
